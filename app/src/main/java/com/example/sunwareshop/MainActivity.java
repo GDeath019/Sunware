@@ -3,8 +3,12 @@ package com.example.sunwareshop;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.sunwareshop.Database.BaoHanh;
 import com.example.sunwareshop.Realm.ModelBaoHanh;
@@ -21,23 +25,39 @@ public class MainActivity extends AppCompatActivity {
     public static AtomicLong DBKey;
     Realm getData;
     ModelBaoHanh modelBaoHanh;
+    Button btn1;
     ListView lv1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initRealM();
         getData = Realm.getDefaultInstance();
         modelBaoHanh = new ModelBaoHanh();
         List<BaoHanh> testData = modelBaoHanh.getAll(getData);
         setTitle("Sunware");
-        initRealM();
+
         anhXa();
         addLv();
+        lv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(MainActivity.this, "Nope", Toast.LENGTH_SHORT).show();
+            }
+        });
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                modelBaoHanh.addData();
+                addLv();
+            }
+        });
     }
 
     private void addLv() {
         List<BaoHanh> dbRealmList = modelBaoHanh.getAll(getData);
         final ArrayList<String> arr = new ArrayList<>();
+        Toast.makeText(this, "???"+dbRealmList.size(), Toast.LENGTH_SHORT).show();
         for (int i=0;i<dbRealmList.size();i++){
             arr.add(dbRealmList.get(i).getMa_bao_hanh()+"\n   "+dbRealmList.get(i).getThoi_gian());
         }
@@ -47,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void anhXa() {
         lv1 = findViewById(R.id.Lv1);
+        btn1 = findViewById(R.id.btn1);
     }
 
     private void initRealM() {

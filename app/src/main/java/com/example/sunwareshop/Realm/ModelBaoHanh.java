@@ -24,20 +24,21 @@ public class ModelBaoHanh extends AppCompatActivity {
     public static AtomicLong KeyBaohanh;
     Realm getData;
     Long ID;
+    int temp=0;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
         initRealM();
         getData = Realm.getDefaultInstance();
-        List<BaoHanh> dbRealmList = getAll(getData);
-        ListBaoHanh = getAll(getData);
-        if (dbRealmList.size()==0){
-            KeyBaohanh = new AtomicLong(0);
-            addData();
-        }else{
-            KeyBaohanh = new AtomicLong(dbRealmList.get(dbRealmList.size()-1).getMa_bao_hanh());
-        }
+//        List<BaoHanh> dbRealmList = getAll(getData);
+//        ListBaoHanh = getAll(getData);
+//        if (dbRealmList.size()==0){
+//            KeyBaohanh = new AtomicLong(0);
+//            addData();
+//        }else{
+//            KeyBaohanh = new AtomicLong(dbRealmList.get(dbRealmList.size()-1).getMa_bao_hanh());
+//        }
         addData();
     }
 
@@ -57,17 +58,18 @@ public class ModelBaoHanh extends AppCompatActivity {
 
     public String insertBaoHanh(){
         final Realm insertRm = Realm.getDefaultInstance();
-        final long DbKey = KeyBaohanh.getAndIncrement()+1;
+        newKey();
+        final long DbKey = KeyBaohanh.getAndIncrement();
         insertRm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm backgroundRm) {
                 BaoHanh dbRealm = backgroundRm.createObject(BaoHanh.class, DbKey);
-//                dbRealm.setMa_bao_hanh(edtName.getText().toString());
-//                dbRealm.setThoi_gian(Integer.parseInt(edtAge.getText().toString()));
+                String sss = "1";
+                dbRealm.setThoi_gian(Integer.parseInt(sss.toString()));
             }
         });
         insertRm.close();
-        Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
         final Realm InsertRm = Realm.getDefaultInstance();
         return "nope";
     }
@@ -115,25 +117,30 @@ public class ModelBaoHanh extends AppCompatActivity {
     }
 
     public void addData(){
-        final Realm insertRm = Realm.getDefaultInstance();
-        newKey();
-        long DbKey = KeyBaohanh.getAndIncrement()+1;
-        int n = 10;
-        // them data vao phai dinh kem trong 1 transaction
-        while (n > 0){
-            long finalDbKey = DbKey;
-            insertRm.executeTransactionAsync(new Realm.Transaction() {
-                @Override
-                public void execute(Realm backgroundRm) {
-                    BaoHanh dbRealm = backgroundRm.createObject(BaoHanh.class, finalDbKey);
-//                dbRealm.setMa_bao_hanh(DbKey);
-                    dbRealm.setThoi_gian(12);
-                }
-            });
-            DbKey++;
-            n--;
-        }
-        insertRm.close();
+        Realm realm = Realm.getDefaultInstance();
+//        try{
+//            List<BaoHanh> dbRealmList = getAll(realm);
+//            KeyBaohanh = new AtomicLong(dbRealmList.get(dbRealmList.size()-1).getMa_bao_hanh()+1);
+//        }catch (Exception e){
+            newKey();
+            long DbKey = KeyBaohanh.getAndIncrement();
+            int n = 10;
+            // them data vao phai dinh kem trong 1 transaction
+            while (n > 0){
+                long finalDbKey = DbKey;
+                realm.executeTransactionAsync(new Realm.Transaction() {
+                    @Override
+                    public void execute(Realm backgroundRm) {
+                        BaoHanh dbRealm = backgroundRm.createObject(BaoHanh.class, finalDbKey);
+                        String sss = "1";
+                        dbRealm.setThoi_gian(Integer.parseInt(sss.toString()));
+                    }
+                });
+                DbKey++;
+                n--;
+            }
+//        }
+        realm.close();
     }
 
     public void newKey(){
@@ -150,7 +157,7 @@ public class ModelBaoHanh extends AppCompatActivity {
             List<BaoHanh> dbRealmList = getAll(realm);
             KeyBaohanh = new AtomicLong(dbRealmList.get(dbRealmList.size()-1).getMa_bao_hanh()+1);
             // xóa bảng tạm thời
-            RealmResults<BaoHanh> results = realm.where(BaoHanh.class).equalTo("id",0).findAll();
+            RealmResults<BaoHanh> results = realm.where(BaoHanh.class).equalTo("ma_bao_hanh",0).findAll();
             results.deleteAllFromRealm();
             realm.commitTransaction();
         }
