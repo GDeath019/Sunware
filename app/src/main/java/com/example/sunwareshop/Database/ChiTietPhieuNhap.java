@@ -14,6 +14,14 @@ public class ChiTietPhieuNhap extends RealmObject {
     public ChiTietPhieuNhap() {
     }
 
+    public ChiTietPhieuNhap(long id, long ma_phieu_nhap, long ma_san_pham, Double gia_nhap, long so_luong) {
+        this.id = id;
+        this.ma_phieu_nhap = ma_phieu_nhap;
+        this.ma_san_pham = ma_san_pham;
+        this.gia_nhap = gia_nhap;
+        this.so_luong = so_luong;
+    }
+
     public long getId() {
         return id;
     }

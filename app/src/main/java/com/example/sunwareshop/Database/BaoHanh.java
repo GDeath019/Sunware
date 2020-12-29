@@ -11,6 +11,11 @@ public class BaoHanh extends RealmObject {
     public BaoHanh() {
     }
 
+    public BaoHanh(long ma_bao_hanh, long thoi_gian) {
+        this.ma_bao_hanh = ma_bao_hanh;
+        this.thoi_gian = thoi_gian;
+    }
+
     public long getMa_bao_hanh() {
         return ma_bao_hanh;
     }

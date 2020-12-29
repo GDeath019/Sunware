@@ -15,6 +15,15 @@ public class ChiTietHoaDon extends RealmObject {
     public ChiTietHoaDon() {
     }
 
+    public ChiTietHoaDon(long id, long ma_hoa_don, long ma_san_pham, double gia_ban, long so_luong, long bao_hanh) {
+        this.id = id;
+        this.ma_hoa_don = ma_hoa_don;
+        this.ma_san_pham = ma_san_pham;
+        this.gia_ban = gia_ban;
+        this.so_luong = so_luong;
+        this.bao_hanh = bao_hanh;
+    }
+
     public long getBao_hanh() {
         return bao_hanh;
     }

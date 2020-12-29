@@ -12,6 +12,12 @@ public class DacTrungSanPham extends RealmObject {
     public DacTrungSanPham() {
     }
 
+    public DacTrungSanPham(long id, long ma_loai_dt, long ma_san_pham) {
+        this.id = id;
+        this.ma_loai_dt = ma_loai_dt;
+        this.ma_san_pham = ma_san_pham;
+    }
+
     public long getId() {
         return id;
     }

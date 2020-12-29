@@ -12,6 +12,12 @@ public class DacTrung extends RealmObject {
     public DacTrung() {
     }
 
+    public DacTrung(long ma_loai_dt, String ten, String mo_ta) {
+        this.ma_loai_dt = ma_loai_dt;
+        this.ten = ten;
+        this.mo_ta = mo_ta;
+    }
+
     public long getMa_loai_dt() {
         return ma_loai_dt;
     }

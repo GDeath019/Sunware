@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     ModelBaoHanh modelBaoHanh;
     Button btn1;
     ListView lv1;
+    ArrayList<String> arr;
+    ArrayAdapter arrayAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
         initRealM();
         getData = Realm.getDefaultInstance();
         modelBaoHanh = new ModelBaoHanh();
-        List<BaoHanh> testData = modelBaoHanh.getAll(getData);
         setTitle("Sunware");
 
         anhXa();
@@ -42,7 +43,18 @@ public class MainActivity extends AppCompatActivity {
         lv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, "Nope", Toast.LENGTH_SHORT).show();
+                List<BaoHanh> testData = modelBaoHanh.getAll(getData);
+                modelBaoHanh.deleteBaoHanh(testData.get(position).getMa_bao_hanh());
+                addLv();
+            }
+        });
+        lv1.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                List<BaoHanh> testData = modelBaoHanh.getAll(getData);
+                modelBaoHanh.updateBaoHanh(testData.get(position).getMa_bao_hanh());
+                addLv();
+                return false;
             }
         });
         btn1.setOnClickListener(new View.OnClickListener() {
@@ -56,12 +68,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void addLv() {
         List<BaoHanh> dbRealmList = modelBaoHanh.getAll(getData);
-        final ArrayList<String> arr = new ArrayList<>();
+        arr = new ArrayList<>();
         Toast.makeText(this, "???"+dbRealmList.size(), Toast.LENGTH_SHORT).show();
         for (int i=0;i<dbRealmList.size();i++){
             arr.add(dbRealmList.get(i).getMa_bao_hanh()+"\n   "+dbRealmList.get(i).getThoi_gian());
         }
-        ArrayAdapter arrayAdapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, arr);
+        arrayAdapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, arr);
         lv1.setAdapter(arrayAdapter);
     }
 
