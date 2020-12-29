@@ -13,6 +13,13 @@ public class IMEI extends RealmObject {
     public IMEI() {
     }
 
+    public IMEI(long IMEI, long ma_san_pham, long ma_phieu_nhap, long ma_hoa_don) {
+        this.IMEI = IMEI;
+        this.ma_san_pham = ma_san_pham;
+        this.ma_phieu_nhap = ma_phieu_nhap;
+        this.ma_hoa_don = ma_hoa_don;
+    }
+
     public long getIMEI() {
         return IMEI;
     }

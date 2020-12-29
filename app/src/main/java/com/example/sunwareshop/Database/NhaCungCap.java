@@ -16,6 +16,16 @@ public class NhaCungCap extends RealmObject {
     public NhaCungCap() {
     }
 
+    public NhaCungCap(long ma_ncc, String ten, String dia_chi, String hot_line, String email, String sdt, long hinh_anh) {
+        this.ma_ncc = ma_ncc;
+        this.ten = ten;
+        this.dia_chi = dia_chi;
+        this.hot_line = hot_line;
+        this.email = email;
+        this.sdt = sdt;
+        this.hinh_anh = hinh_anh;
+    }
+
     public long getMa_ncc() {
         return ma_ncc;
     }

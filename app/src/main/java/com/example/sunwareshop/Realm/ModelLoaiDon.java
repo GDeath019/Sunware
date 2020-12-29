@@ -6,7 +6,7 @@ import android.os.PersistableBundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.sunwareshop.Database.DacTrung;
+import com.example.sunwareshop.Database.LoaiDon;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +16,9 @@ import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
 
-public class ModelDacTrung extends AppCompatActivity {
+public class ModelLoaiDon extends AppCompatActivity {
     private String DbName = "FirstDb.realm";
-    public static AtomicLong KeyDT;
+    public static AtomicLong KeyLoaiDon;
     Realm getData;
 
     @Override
@@ -26,7 +26,6 @@ public class ModelDacTrung extends AppCompatActivity {
         super.onCreate(savedInstanceState, persistentState);
         initRealM();
         getData = Realm.getDefaultInstance();
-        addData();
     }
     public void initRealM() {
         Realm.init(Realm.getApplicationContext());
@@ -42,16 +41,15 @@ public class ModelDacTrung extends AppCompatActivity {
 
     }
 
-    public String insertDacTrung(){
+    public String insertLoaiDon(){
         final Realm insertRm = Realm.getDefaultInstance();
         newKey();
-        final long DbKey = KeyDT.getAndIncrement();
+        final long DbKey = KeyLoaiDon.getAndIncrement();
         insertRm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm backgroundRm) {
-                DacTrung dbRealm = backgroundRm.createObject(DacTrung.class, DbKey);
+                LoaiDon dbRealm = backgroundRm.createObject(LoaiDon.class, DbKey);
                 String sss = "1";
-                dbRealm.setTen(sss.toString());
                 dbRealm.setMo_ta(sss.toString());
             }
         });
@@ -60,33 +58,29 @@ public class ModelDacTrung extends AppCompatActivity {
         return "nope";
     }
 
-    public String updateDacTrung(Long id){
+    public String updateLoaiDon(Long id){
         Realm realm = Realm.getDefaultInstance();
         final Long tg = id;
         realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-//                if(edtName.getText().length()==0 || edtUnv.getText().length()==0 || edtAge.getText().length()==0){
-//                    Toast.makeText(getApplicationContext(), "Mời nhập đủ dữ liệu!!", Toast.LENGTH_SHORT).show();
-//                }else {
-                DacTrung dbRealm = realm.where(DacTrung.class).equalTo("ma_loai_dt", tg).findFirst();
+                LoaiDon dbRealm = realm.where(LoaiDon.class).equalTo("ma_loai_don", tg).findFirst();
                 String sss = "9999";
-                dbRealm.setTen(sss.toString());
+
                 dbRealm.setMo_ta(sss.toString());
-//                }
             }
         });
         return "nope";
     }
 
-    public String deleteDactrung(Long id){
+    public String deleteLoaiDon(Long id){
         Realm realm = Realm.getDefaultInstance();
         final Long dlt = id;
         final boolean[] check = {true};
         realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm realm1) {
-                RealmResults<DacTrung> results = realm1.where(DacTrung.class).equalTo("ma_loai_dt",dlt).findAll();
+                RealmResults<LoaiDon> results = realm1.where(LoaiDon.class).equalTo("ma_loai_don",dlt).findAll();
                 if (results.size()==0){
                     check[0] = false;
                 }else{
@@ -104,20 +98,20 @@ public class ModelDacTrung extends AppCompatActivity {
     public void addData(){
         Realm realm = Realm.getDefaultInstance();
         try{
-            List<DacTrung> dbRealmList = getAll(realm);
-            KeyDT = new AtomicLong(dbRealmList.get(dbRealmList.size()-1).getMa_loai_dt()+1);
+            List<LoaiDon> dbRealmList = getAll(realm);
+            KeyLoaiDon = new AtomicLong(dbRealmList.get(dbRealmList.size()-1).getMa_loai_don()+1);
         }catch (Exception e){
             newKey();
-            long DbKey = KeyDT.getAndIncrement();
-            ArrayList<DacTrung> data = new ArrayList<>();
-            data.add(new DacTrung(1, "ten","mota"));
-            data.add(new DacTrung(2, "ten","mota"));
-            data.add(new DacTrung(3, "ten","mota"));
-            data.add(new DacTrung(4, "ten","mota"));
-            data.add(new DacTrung(5, "ten","mota"));
-            data.add(new DacTrung(6, "ten","mota"));
-            data.add(new DacTrung(7, "ten","mota"));
-            data.add(new DacTrung(8, "ten","mota"));
+            long DbKey = KeyLoaiDon.getAndIncrement();
+            ArrayList<LoaiDon> data = new ArrayList<>();
+            data.add(new LoaiDon(1, "mota"));
+            data.add(new LoaiDon(2, "mota"));
+            data.add(new LoaiDon(3, "mota"));
+            data.add(new LoaiDon(4, "mota"));
+            data.add(new LoaiDon(5, "mota"));
+            data.add(new LoaiDon(6, "mota"));
+            data.add(new LoaiDon(7, "mota"));
+            data.add(new LoaiDon(8, "mota"));
             int n = data.size()-1;
             // them data vao phai dinh kem trong 1 transaction
             while (n >= 0){
@@ -126,8 +120,8 @@ public class ModelDacTrung extends AppCompatActivity {
                 realm.executeTransactionAsync(new Realm.Transaction() {
                     @Override
                     public void execute(Realm backgroundRm) {
-                        DacTrung dbRealm = backgroundRm.createObject(DacTrung.class, finalDbKey);
-                        dbRealm.setTen(data.get(temp).getTen());
+                        LoaiDon dbRealm = backgroundRm.createObject(LoaiDon.class, finalDbKey);
+
                         dbRealm.setMo_ta(data.get(temp).getMo_ta());
                     }
                 });
@@ -141,25 +135,25 @@ public class ModelDacTrung extends AppCompatActivity {
     public void newKey(){
         Realm realm = Realm.getDefaultInstance();
         try{
-            List<DacTrung> dbRealmList = getAll(realm);
-            KeyDT = new AtomicLong(dbRealmList.get(dbRealmList.size()-1).getMa_loai_dt()+1);
+            List<LoaiDon> dbRealmList = getAll(realm);
+            KeyLoaiDon = new AtomicLong(dbRealmList.get(dbRealmList.size()-1).getMa_loai_don()+1);
         }catch (Exception e){
             // lỗi do chưa có data
             realm.beginTransaction();
             // tạo 1 bảng tạm thời
-            DacTrung dbRealm = realm.createObject(DacTrung.class,0);
+            LoaiDon dbRealm = realm.createObject(LoaiDon.class,0);
             // set lại key auto 1 lần nữa
-            List<DacTrung> dbRealmList = getAll(realm);
-            KeyDT = new AtomicLong(dbRealmList.get(dbRealmList.size()-1).getMa_loai_dt()+1);
+            List<LoaiDon> dbRealmList = getAll(realm);
+            KeyLoaiDon = new AtomicLong(dbRealmList.get(dbRealmList.size()-1).getMa_loai_don()+1);
             // xóa bảng tạm thời
-            RealmResults<DacTrung> results = realm.where(DacTrung.class).equalTo("ma_loai_dt",0).findAll();
+            RealmResults<LoaiDon> results = realm.where(LoaiDon.class).equalTo("ma_loai_don",0).findAll();
             results.deleteAllFromRealm();
             realm.commitTransaction();
         }
         realm.close();
     }
-    public List<DacTrung> getAll(Realm passedInRealm){
-        RealmResults<DacTrung> realms = passedInRealm.where(DacTrung.class).findAll();
+    public List<LoaiDon> getAll(Realm passedInRealm){
+        RealmResults<LoaiDon> realms = passedInRealm.where(LoaiDon.class).findAll();
         return realms;
     }
 }

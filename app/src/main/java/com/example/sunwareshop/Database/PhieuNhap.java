@@ -17,6 +17,15 @@ public class PhieuNhap extends RealmObject {
     public PhieuNhap() {
     }
 
+    public PhieuNhap(long ma_phieu_nhap, long ma_nhan_vien, long ma_ncc, Date ngay_nhap, Double tong_tien, String ghi_chu) {
+        this.ma_phieu_nhap = ma_phieu_nhap;
+        this.ma_nhan_vien = ma_nhan_vien;
+        this.ma_ncc = ma_ncc;
+        this.ngay_nhap = ngay_nhap;
+        this.tong_tien = tong_tien;
+        this.ghi_chu = ghi_chu;
+    }
+
     public long getMa_phieu_nhap() {
         return ma_phieu_nhap;
     }

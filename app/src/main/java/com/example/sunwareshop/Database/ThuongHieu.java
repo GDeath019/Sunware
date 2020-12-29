@@ -11,6 +11,11 @@ public class ThuongHieu extends RealmObject {
     public ThuongHieu() {
     }
 
+    public ThuongHieu(long ma_thuong_hieu, String ten_thuong_hieu) {
+        this.ma_thuong_hieu = ma_thuong_hieu;
+        this.ten_thuong_hieu = ten_thuong_hieu;
+    }
+
     public long getMa_thuong_hieu() {
         return ma_thuong_hieu;
     }

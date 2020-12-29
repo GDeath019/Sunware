@@ -12,6 +12,12 @@ public class LoaiSP extends RealmObject {
     public LoaiSP() {
     }
 
+    public LoaiSP(long ma_loai_sp, String ten_loai_sp, String mo_ta) {
+        this.ma_loai_sp = ma_loai_sp;
+        this.ten_loai_sp = ten_loai_sp;
+        this.mo_ta = mo_ta;
+    }
+
     public long getMa_loai_sp() {
         return ma_loai_sp;
     }

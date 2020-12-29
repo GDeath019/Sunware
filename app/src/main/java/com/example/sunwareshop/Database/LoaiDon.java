@@ -11,6 +11,11 @@ public class LoaiDon extends RealmObject {
     public LoaiDon() {
     }
 
+    public LoaiDon(long ma_loai_don, String mo_ta) {
+        this.ma_loai_don = ma_loai_don;
+        this.mo_ta = mo_ta;
+    }
+
     public long getMa_loai_don() {
         return ma_loai_don;
     }

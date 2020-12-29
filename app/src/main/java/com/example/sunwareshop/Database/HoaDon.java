@@ -18,6 +18,16 @@ public class HoaDon extends RealmObject {
     public HoaDon() {
     }
 
+    public HoaDon(long ma_hoa_don, long ma_nhan_vien, long ma_khach_hang, Date ngay_lap, long loai_don, String trang_thai, Double tong_tien) {
+        this.ma_hoa_don = ma_hoa_don;
+        this.ma_nhan_vien = ma_nhan_vien;
+        this.ma_khach_hang = ma_khach_hang;
+        this.ngay_lap = ngay_lap;
+        this.loai_don = loai_don;
+        this.trang_thai = trang_thai;
+        this.tong_tien = tong_tien;
+    }
+
     public long getMa_hoa_don() {
         return ma_hoa_don;
     }

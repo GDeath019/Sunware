@@ -20,6 +20,18 @@ public class TaiKhoan extends RealmObject {
     public TaiKhoan() {
     }
 
+    public TaiKhoan(long id, String email, Date ngay_lap, String mat_khau, String ho_ten, String dia_chi, String sdt, long hinh_anh, long loai_tai_khoan) {
+        this.id = id;
+        this.email = email;
+        this.ngay_lap = ngay_lap;
+        this.mat_khau = mat_khau;
+        this.ho_ten = ho_ten;
+        this.dia_chi = dia_chi;
+        this.sdt = sdt;
+        this.hinh_anh = hinh_anh;
+        this.loai_tai_khoan = loai_tai_khoan;
+    }
+
     public long getId() {
         return id;
     }
