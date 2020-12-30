@@ -141,11 +141,14 @@ public class MainActivity extends AppCompatActivity {
     private void addLv() {
         List<Product> dbRealmList = modelSanPham.getAll(getData);
         arr = new ArrayList<>();
+        ArrayList<Product> arrayList =new ArrayList<>();
         for (int i=0;i<dbRealmList.size();i++){
-            arr.add(dbRealmList.get(i).getTen_san_pham()+"\n   "+dbRealmList.get(i).getGia_ban());
+            arrayList.add(new Product(dbRealmList.get(i).getMa_san_pham(),dbRealmList.get(i).getMa_thuong_hieu(),dbRealmList.get(i).getMa_loai_san_pham()
+            , dbRealmList.get(i).getTen_san_pham(), dbRealmList.get(i).getGia_ban(), dbRealmList.get(i).getHinh_anh(), dbRealmList.get(i).getSo_luong(), dbRealmList.get(i).getBao_hanh()));
         }
-        arrayAdapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, arr);
-        lv1.setAdapter(arrayAdapter);
+//        arrayAdapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, arr);
+        SanphamAdapter adapter =new SanphamAdapter(MainActivity.this, R.layout.listview_sanpham, arrayList);
+        lv1.setAdapter(adapter);
     }
 
     private void anhXa() {

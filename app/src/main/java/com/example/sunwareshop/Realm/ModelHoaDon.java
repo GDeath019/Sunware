@@ -43,14 +43,14 @@ public class ModelHoaDon extends AppCompatActivity {
             String date="12/12/2020";
             Date date1 = new SimpleDateFormat("dd/mm/yyyy").parse(date);
             ArrayList<HoaDon> data = new ArrayList<>();
-            data.add(new HoaDon(1,1,1,date1,1,"asas", (double) 1000000));
-            data.add(new HoaDon(2,2,2,date1,2,"asas",(double)  1000000));
-            data.add(new HoaDon(3,3,3,date1,3,"asas", (double) 1000000));
-            data.add(new HoaDon(4,4,4,date1,4,"asas", (double) 1000000));
-            data.add(new HoaDon(5,5,5,date1,5,"asas", (double) 1000000));
-            data.add(new HoaDon(6,6,6,date1,6,"asas", (double) 1000000));
-            data.add(new HoaDon(7,7,7,date1,7,"asas", (double) 1000000));
-            data.add(new HoaDon(8,8,8,date1,8,"asas", (double) 1000000));
+            data.add(new HoaDon(1,1,3,date1,1,"done", (double) 5000000));
+            data.add(new HoaDon(2,1,2,date1,1,"done",(double)  6000000));
+            data.add(new HoaDon(3,4,3,date1,2,"done", (double) 10000000));
+            data.add(new HoaDon(4,4,8,date1,1,"done", (double) 6000000));
+            data.add(new HoaDon(5,6,5,date1,1,"done", (double) 10000000));
+            data.add(new HoaDon(6,6,2,date1,2,"done", (double) 5000000));
+            data.add(new HoaDon(7,7,3,date1,1,"done", (double) 14000000));
+            data.add(new HoaDon(8,4,8,date1,2,"done", (double) 12000000));
             int n = data.size()-1;
             // them data vao phai dinh kem trong 1 transaction
             while (n >= 0){

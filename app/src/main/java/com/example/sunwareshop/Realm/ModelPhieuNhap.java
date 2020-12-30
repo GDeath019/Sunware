@@ -128,14 +128,14 @@ public class ModelPhieuNhap extends AppCompatActivity {
             String date="12/12/2020";
             Date date1 = new SimpleDateFormat("dd/mm/yyyy").parse(date);
             ArrayList<PhieuNhap> data = new ArrayList<>();
-            data.add(new PhieuNhap(1, 1,1,date1, (double) 100,"ghi chu"));
-            data.add(new PhieuNhap(2, 2,2,date1, (double) 100,"ghi chu"));
-            data.add(new PhieuNhap(3, 3,3,date1, (double) 100,"ghi chu"));
-            data.add(new PhieuNhap(4, 4,4,date1, (double) 100,"ghi chu"));
-            data.add(new PhieuNhap(5, 5,5,date1, (double) 100,"ghi chu"));
-            data.add(new PhieuNhap(6, 6,6,date1, (double) 100,"ghi chu"));
-            data.add(new PhieuNhap(7, 7,7,date1, (double) 100,"ghi chu"));
-            data.add(new PhieuNhap(8, 8,8,date1, (double) 100,"ghi chu"));
+            data.add(new PhieuNhap(1, 1,1,date1, (double) 1354700000,"ghi chu"));
+            data.add(new PhieuNhap(2, 4,2,date1, (double) 285000000,"ghi chu"));
+            data.add(new PhieuNhap(3, 1,3,date1, (double) 973800000,"ghi chu"));
+            data.add(new PhieuNhap(4, 4,4,date1, (double) 0,"ghi chu"));
+            data.add(new PhieuNhap(5, 6,5,date1, (double) 0,"ghi chu"));
+            data.add(new PhieuNhap(6, 6,6,date1, (double) 0,"ghi chu"));
+            data.add(new PhieuNhap(7, 7,7,date1, (double) 0,"ghi chu"));
+            data.add(new PhieuNhap(8, 4,8,date1, (double) 0,"ghi chu"));
             int n = data.size()-1;
             // them data vao phai dinh kem trong 1 transaction
             while (n >= 0){

@@ -110,14 +110,14 @@ public class ModelDacTrung extends AppCompatActivity {
             newKey();
             long DbKey = KeyDT.getAndIncrement();
             ArrayList<DacTrung> data = new ArrayList<>();
-            data.add(new DacTrung(1, "ten","mota"));
-            data.add(new DacTrung(2, "ten","mota"));
-            data.add(new DacTrung(3, "ten","mota"));
-            data.add(new DacTrung(4, "ten","mota"));
-            data.add(new DacTrung(5, "ten","mota"));
-            data.add(new DacTrung(6, "ten","mota"));
-            data.add(new DacTrung(7, "ten","mota"));
-            data.add(new DacTrung(8, "ten","mota"));
+            data.add(new DacTrung(1, "Đen tuyền","mota"));
+            data.add(new DacTrung(2, "Bạch kim","mota"));
+            data.add(new DacTrung(3, "Sang trọng","mota"));
+            data.add(new DacTrung(4, "Thể thao","mota"));
+            data.add(new DacTrung(5, "Công nghệ mới","mota"));
+            data.add(new DacTrung(6, "Tiết kiệm điện","mota"));
+            data.add(new DacTrung(7, "Tốc độ nhanh","mota"));
+            data.add(new DacTrung(8, "Âm thanh tốt","mota"));
             int n = data.size()-1;
             // them data vao phai dinh kem trong 1 transaction
             while (n >= 0){

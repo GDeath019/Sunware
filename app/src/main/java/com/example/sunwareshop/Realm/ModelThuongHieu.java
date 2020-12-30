@@ -109,14 +109,14 @@ public class ModelThuongHieu extends AppCompatActivity {
             newKey();
             long DbKey = KeyTH.getAndIncrement();
             ArrayList<ThuongHieu> data = new ArrayList<>();
-            data.add(new ThuongHieu(1, "non"));
-            data.add(new ThuongHieu(2, "kem"));
-            data.add(new ThuongHieu(3, "ga"));
-            data.add(new ThuongHieu(4, "ngu"));
-            data.add(new ThuongHieu(5, "1"));
-            data.add(new ThuongHieu(6, "1"));
-            data.add(new ThuongHieu(7, "1"));
-            data.add(new ThuongHieu(8, "1"));
+            data.add(new ThuongHieu(1, "SamSung"));
+            data.add(new ThuongHieu(2, "Hitachi"));
+            data.add(new ThuongHieu(3, "Sony"));
+            data.add(new ThuongHieu(4, "LG"));
+            data.add(new ThuongHieu(5, "Asus"));
+            data.add(new ThuongHieu(6, "Rog"));
+            data.add(new ThuongHieu(7, "Garena"));
+            data.add(new ThuongHieu(8, "Apple"));
             int n = data.size()-1;
             // them data vao phai dinh kem trong 1 transaction
             while (n >= 0){

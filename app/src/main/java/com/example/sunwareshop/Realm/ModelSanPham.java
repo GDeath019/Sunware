@@ -113,10 +113,6 @@ public class ModelSanPham extends AppCompatActivity {
     public String updateSoLuongSanpham(String id, ArrayList<String> arrList){
         Realm realm = Realm.getDefaultInstance();
         final Long tg ;
-//        Long idTH = new Long(arrList.get(1))+1;
-//        Long idLSP = new Long(arrList.get(2))+1;
-//        Long finalIdTH = idTH;
-//        Long finalIdLSP = idLSP;
         List<Product> products = getAll(realm);
         tg = products.get(Integer.parseInt(id)).getMa_san_pham();
         String soLuong = String.valueOf(products.get(Integer.parseInt(id)).getSo_luong() - Long.parseLong(arrList.get(3)));
@@ -125,12 +121,6 @@ public class ModelSanPham extends AppCompatActivity {
             public void execute(Realm realm) {
                 Product dbRealm = realm.where(Product.class).equalTo("ma_san_pham", tg).findFirst();
 
-//                dbRealm.setMa_thuong_hieu(finalIdTH);
-//                dbRealm.setMa_loai_san_pham(finalIdLSP);
-//                dbRealm.setTen_san_pham(arrList.get(0));
-//                dbRealm.setGia_ban(Double.parseDouble(arrList.get(3)));
-//                dbRealm.setHinh_anh(Long.parseLong("1"));
-//                dbRealm.setBao_hanh(Long.parseLong(arrList.get(4))+1);
                 dbRealm.setSo_luong(Long.parseLong(soLuong));
             }
         });
@@ -167,14 +157,14 @@ public class ModelSanPham extends AppCompatActivity {
             newKey();
             long DbKey = KeySP.getAndIncrement();
             ArrayList<Product> data = new ArrayList<>();
-            data.add(new Product(1, 1,1,"name",1.0,1,1,1));
-            data.add(new Product(2, 1,1,"name",1.0,1,1,2));
-            data.add(new Product(3, 1,1,"name",1.0,1,1,3));
-            data.add(new Product(4, 1,1,"name",1.0,1,1,4));
-            data.add(new Product(5, 1,1,"name",1.0,1,1,5));
-            data.add(new Product(6, 1,1,"name",1.0,1,1,6));
-            data.add(new Product(7, 1,1,"name",1.0,1,1,7));
-            data.add(new Product(8, 1,1,"name",1.0,1,1,8));
+            data.add(new Product(1, 1,1,"Tivi LG 42 inch",5000000.0,1,100,6));
+            data.add(new Product(2, 2,1,"Tủ lạnh 600L 2 ngăn",3000000.0,1,235,6));
+            data.add(new Product(3, 3,1,"Máy ảnh Sony Extra pro 2",2000000.0,1,161,4));
+            data.add(new Product(4, 4,1,"LapTop Asus Tus GM2",2500000.0,1,123,4));
+            data.add(new Product(5, 5,1,"Ipad 8",10000000.0,1,60,4));
+            data.add(new Product(6, 6,1,"Quạt LG 2020",7000000.0,1,72,3));
+            data.add(new Product(7, 7,1,"Bếp từ Hitachi siêu tiết kiệm",4200000.0,1,0,3));
+            data.add(new Product(8, 8,1,"Nồi cơm rog",800000.0,1,0,2));
             int n = data.size()-1;
             // them data vao phai dinh kem trong 1 transaction
             while (n >= 0){

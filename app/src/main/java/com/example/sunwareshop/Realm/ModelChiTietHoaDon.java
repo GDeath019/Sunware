@@ -130,14 +130,14 @@ public class ModelChiTietHoaDon extends AppCompatActivity {
             newKey();
             long DbKey = KeyCTHD.getAndIncrement();
             ArrayList<ChiTietHoaDon> data = new ArrayList<>();
-            data.add(new ChiTietHoaDon(1, 1, 1, 1, 1, 1));
-            data.add(new ChiTietHoaDon(2, 2, 1, 1, 1, 1));
-            data.add(new ChiTietHoaDon(3, 3, 1, 1, 1, 1));
-            data.add(new ChiTietHoaDon(4, 4, 1, 1, 1, 1));
-            data.add(new ChiTietHoaDon(5, 5, 1, 1, 1, 1));
-            data.add(new ChiTietHoaDon(6, 6, 1, 1, 1, 1));
-            data.add(new ChiTietHoaDon(7, 7, 1, 1, 1, 1));
-            data.add(new ChiTietHoaDon(8, 8, 1, 1, 1, 1));
+            data.add(new ChiTietHoaDon(1, 1, 1, 5000000, 1, 5));
+            data.add(new ChiTietHoaDon(2, 2, 2, 3000000, 2, 3));
+            data.add(new ChiTietHoaDon(3, 3, 5, 10000000, 1, 6));
+            data.add(new ChiTietHoaDon(4, 4, 3, 2000000, 3, 3));
+            data.add(new ChiTietHoaDon(5, 5, 1, 5000000, 2, 3));
+            data.add(new ChiTietHoaDon(6, 6, 4, 2500000, 2, 2));
+            data.add(new ChiTietHoaDon(7, 7, 6, 7000000, 2, 4));
+            data.add(new ChiTietHoaDon(8, 8, 2, 3000000, 4, 2));
             int n = data.size()-1;
             // them data vao phai dinh kem trong 1 transaction
             while (n >= 0){

@@ -104,14 +104,8 @@ public class ModelLoaiDon extends AppCompatActivity {
             newKey();
             long DbKey = KeyLoaiDon.getAndIncrement();
             ArrayList<LoaiDon> data = new ArrayList<>();
-            data.add(new LoaiDon(1, "mota"));
-            data.add(new LoaiDon(2, "mota"));
-            data.add(new LoaiDon(3, "mota"));
-            data.add(new LoaiDon(4, "mota"));
-            data.add(new LoaiDon(5, "mota"));
-            data.add(new LoaiDon(6, "mota"));
-            data.add(new LoaiDon(7, "mota"));
-            data.add(new LoaiDon(8, "mota"));
+            data.add(new LoaiDon(1, "Trực tiếp"));
+            data.add(new LoaiDon(2, "Online"));
             int n = data.size()-1;
             // them data vao phai dinh kem trong 1 transaction
             while (n >= 0){

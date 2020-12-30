@@ -105,14 +105,14 @@ public class ModelLoaiSanPham extends AppCompatActivity {
             newKey();
             long DbKey = KeyLSP.getAndIncrement();
             ArrayList<LoaiSP> data = new ArrayList<>();
-            data.add(new LoaiSP(1, "tenloaisanpham","mota"));
-            data.add(new LoaiSP(2, "tenloaisanpham","mota"));
-            data.add(new LoaiSP(3, "tenloaisanpham","mota"));
-            data.add(new LoaiSP(4, "tenloaisanpham","mota"));
-            data.add(new LoaiSP(5, "tenloaisanpham","mota"));
-            data.add(new LoaiSP(6, "tenloaisanpham","mota"));
-            data.add(new LoaiSP(7, "tenloaisanpham","mota"));
-            data.add(new LoaiSP(8, "tenloaisanpham","mota"));
+            data.add(new LoaiSP(1, "Tivi","mota"));
+            data.add(new LoaiSP(2, "Tủ lạnh","mota"));
+            data.add(new LoaiSP(3, "Quạt","mota"));
+            data.add(new LoaiSP(4, "Điện thoại","mota"));
+            data.add(new LoaiSP(5, "Bếp từ","mota"));
+            data.add(new LoaiSP(6, "Đầu kĩ thuật số","mota"));
+            data.add(new LoaiSP(7, "Máy tính","mota"));
+            data.add(new LoaiSP(8, "Đồ bếp","mota"));
             int n = data.size()-1;
             // them data vao phai dinh kem trong 1 transaction
             while (n >= 0){

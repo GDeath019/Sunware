@@ -111,14 +111,14 @@ public class ModelDacTrungSanpham extends AppCompatActivity {
             newKey();
             long DbKey = KeyDTSP.getAndIncrement();
             ArrayList<DacTrungSanPham> data = new ArrayList<>();
-            data.add(new DacTrungSanPham(1, 1,1));
-            data.add(new DacTrungSanPham(2, 1,1));
-            data.add(new DacTrungSanPham(3, 1,1));
-            data.add(new DacTrungSanPham(4, 1,1));
-            data.add(new DacTrungSanPham(5, 1,1));
-            data.add(new DacTrungSanPham(6, 1,1));
-            data.add(new DacTrungSanPham(7, 1,1));
-            data.add(new DacTrungSanPham(8, 1,1));
+            data.add(new DacTrungSanPham(1, 3,1));
+            data.add(new DacTrungSanPham(2, 5,2));
+            data.add(new DacTrungSanPham(3, 4,3));
+            data.add(new DacTrungSanPham(4, 7,4));
+            data.add(new DacTrungSanPham(5, 3,5));
+            data.add(new DacTrungSanPham(6, 1,6));
+            data.add(new DacTrungSanPham(7, 6,7));
+            data.add(new DacTrungSanPham(8, 7,8));
             int n = data.size()-1;
             // them data vao phai dinh kem trong 1 transaction
             while (n >= 0){

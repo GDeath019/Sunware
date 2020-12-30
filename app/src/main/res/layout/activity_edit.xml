@@ -10,7 +10,7 @@
         android:id="@+id/imgBtEdit"
         android:layout_width="153dp"
         android:layout_height="140dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:src="@drawable/camera"
         app:layout_constraintBottom_toTopOf="@+id/edtNameEdit"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,13 +20,14 @@
 
     <EditText
         android:id="@+id/edtNameEdit"
-        android:layout_width="291dp"
+        android:layout_width="300dp"
         android:layout_height="46dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="48dp"
+        android:background="@drawable/custom_tv"
         android:hint="Tên sản phẩm"
+        android:padding="2dp"
         app:layout_constraintBottom_toTopOf="@+id/spnThuongHieuEdit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.537"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -53,9 +54,11 @@
 
     <Spinner
         android:id="@+id/spnThuongHieuEdit"
-        android:layout_width="161dp"
+        android:layout_width="173dp"
         android:layout_height="46dp"
         android:layout_marginBottom="60dp"
+        android:background="@drawable/custom_tv"
+        android:padding="2dp"
         app:layout_constraintBottom_toTopOf="@+id/spnLoaiSanPhamEdit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.188"
@@ -66,6 +69,8 @@
         android:layout_width="122dp"
         android:layout_height="46dp"
         android:layout_marginBottom="60dp"
+        android:background="@drawable/custom_tv"
+        android:padding="2dp"
         app:layout_constraintBottom_toTopOf="@+id/spnLoaiSanPhamEdit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.444"
@@ -84,8 +89,10 @@
 
     <Spinner
         android:id="@+id/spnLoaiSanPhamEdit"
-        android:layout_width="324dp"
+        android:layout_width="300dp"
         android:layout_height="46dp"
+        android:background="@drawable/custom_tv"
+        android:padding="2dp"
         android:layout_marginBottom="56dp"
         app:layout_constraintBottom_toTopOf="@+id/edtPriceEdit"
         app:layout_constraintEnd_toEndOf="parent"
@@ -117,9 +124,11 @@
 
     <EditText
         android:id="@+id/edtPriceEdit"
-        android:layout_width="166dp"
+        android:layout_width="173dp"
         android:layout_height="41dp"
         android:layout_marginStart="28dp"
+        android:background="@drawable/custom_tv"
+        android:padding="2dp"
         android:layout_marginBottom="28dp"
         android:hint="Giá Bán"
         android:inputType="number"
@@ -133,6 +142,8 @@
         android:layout_width="110dp"
         android:layout_height="39dp"
         android:layout_marginBottom="28dp"
+        android:background="@drawable/custom_tv"
+        android:padding="2dp"
         android:hint="Số lượng"
         app:layout_constraintBottom_toTopOf="@+id/btnCancelEdit"
         app:layout_constraintEnd_toEndOf="parent"

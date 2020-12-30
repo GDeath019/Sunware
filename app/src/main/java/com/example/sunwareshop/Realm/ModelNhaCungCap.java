@@ -119,14 +119,14 @@ public class ModelNhaCungCap extends AppCompatActivity {
             newKey();
             long DbKey = KeyNCC.getAndIncrement();
             ArrayList<NhaCungCap> data = new ArrayList<>();
-            data.add(new NhaCungCap(1, "ten","diachi","hotline","email" , "sdt" ,1));
-            data.add(new NhaCungCap(2, "ten","diachi","hotline","email" , "sdt" ,1));
-            data.add(new NhaCungCap(3, "ten","diachi","hotline","email" , "sdt" ,1));
-            data.add(new NhaCungCap(4, "ten","diachi","hotline","email" , "sdt" ,1));
-            data.add(new NhaCungCap(5, "ten","diachi","hotline","email" , "sdt" ,1));
-            data.add(new NhaCungCap(6, "ten","diachi","hotline","email" , "sdt" ,1));
-            data.add(new NhaCungCap(7, "ten","diachi","hotline","email" , "sdt" ,1));
-            data.add(new NhaCungCap(8, "ten","diachi","hotline","email" , "sdt" ,1));
+            data.add(new NhaCungCap(1, "SamSung","Japanese","001099","samsung@gmail.com" , "sdt" ,1));
+            data.add(new NhaCungCap(2, "Hitachi","Korean","19001024","hitachi@gmail.com" , "sdt" ,1));
+            data.add(new NhaCungCap(3, "Sony","Korean","05648217","sony@gmail.com" , "sdt" ,1));
+            data.add(new NhaCungCap(4, "LG","TaiWan","212312","lg@gmail.com" , "sdt" ,1));
+            data.add(new NhaCungCap(5, "Asus","America","541320","asus@gmail.com" , "sdt" ,1));
+            data.add(new NhaCungCap(6, "Rog","England","5312068","rog@gmail.com" , "sdt" ,1));
+            data.add(new NhaCungCap(7, "Garena","VietNam","1231542","garena@gmail.com" , "sdt" ,1));
+            data.add(new NhaCungCap(8, "Apple","America","8852125","apple@gmail.com" , "sdt" ,1));
             int n = data.size()-1;
             // them data vao phai dinh kem trong 1 transaction
             while (n >= 0){

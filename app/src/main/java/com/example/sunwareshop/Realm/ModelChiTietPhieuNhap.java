@@ -115,14 +115,14 @@ public class ModelChiTietPhieuNhap extends AppCompatActivity {
             newKey();
             long DbKey = KeyCTPN.getAndIncrement();
             ArrayList<ChiTietPhieuNhap> data = new ArrayList<>();
-            data.add(new ChiTietPhieuNhap(1, 1, 1, 1.0, 1));
-            data.add(new ChiTietPhieuNhap(2, 2, 1, 1.0, 1));
-            data.add(new ChiTietPhieuNhap(3, 3, 1, 1.0, 1));
-            data.add(new ChiTietPhieuNhap(4, 4, 1, 1.0, 1));
-            data.add(new ChiTietPhieuNhap(5, 5, 1, 1.0, 1));
-            data.add(new ChiTietPhieuNhap(6, 6, 1, 1.0, 1));
-            data.add(new ChiTietPhieuNhap(7, 7, 1, 1.0, 1));
-            data.add(new ChiTietPhieuNhap(8, 8, 1, 1.0, 1));
+            data.add(new ChiTietPhieuNhap(1, 1, 1, 4500000.0, 100));
+            data.add(new ChiTietPhieuNhap(2, 2, 2, 2000000.0, 100));
+            data.add(new ChiTietPhieuNhap(3, 1, 3, 1700000.0, 111));
+            data.add(new ChiTietPhieuNhap(4, 1, 4, 2000000.0, 123));
+            data.add(new ChiTietPhieuNhap(5, 1, 2, 2000000.0, 135));
+            data.add(new ChiTietPhieuNhap(6, 2, 3, 1700000.0, 50));
+            data.add(new ChiTietPhieuNhap(7, 3, 5, 9000000.0, 60));
+            data.add(new ChiTietPhieuNhap(8, 3, 6, 6200000.0, 72));
             int n = data.size()-1;
             // them data vao phai dinh kem trong 1 transaction
             while (n >= 0){
