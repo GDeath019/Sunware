@@ -118,11 +118,11 @@ public class ModelHoaDon extends AppCompatActivity {
         insertRm.close();
         ArrayList<String> arrayList1 = new ArrayList<>();
         arrayList1.add(DbKey+"");
-        arrayList1.add(arrayList.get(5)+"");
-        arrayList1.add(arrayList.get(2));
-        arrayList1.add(arrayList.get(3));
-        modelChiTietHoaDon.insertChiTietHoaDon(arrayList1);
-        return s[0];
+        arrayList1.add(arrayList.get(5)+"");// id
+        arrayList1.add(arrayList.get(2));//price
+        arrayList1.add(arrayList.get(3));//soluong
+        String temp = modelChiTietHoaDon.insertChiTietHoaDon(arrayList1);
+        return temp;
     }
 
     public String updateHoaDon(Long id){

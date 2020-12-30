@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -71,17 +73,47 @@ public class BuyActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String id = intent.getStringExtra("id");
                 ArrayList<String> arrayList = new ArrayList<>();
                 arrayList.add(String.valueOf(spnNhanVien.getSelectedItem()));
                 arrayList.add(spnKhach.getSelectedItem()+"");
                 arrayList.add(edtPrice.getText().toString());
                 arrayList.add(edtSoluong.getText().toString());
                 arrayList.add(edtName.getText().toString());
-                arrayList.add(intent.getStringExtra("id"));
+                arrayList.add(id);
                 String result = modelHoaDon.insertHoaDon(arrayList);
-                List<HoaDon> cc = modelHoaDon.getAll(getData);
+                List<HoaDon> hoaDons = modelHoaDon.getAll(getData);
                 ModelChiTietHoaDon modelChiTietHoaDon = new ModelChiTietHoaDon();
                 List<ChiTietHoaDon> chiTietHoaDons = modelChiTietHoaDon.getAll(getData);
+                String databack = modelSanPham.updateSoLuongSanpham(id, arrayList);
+                Toast.makeText(BuyActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                Intent intent1 = new Intent(BuyActivity.this, MainActivity.class);
+                startActivity(intent1);
+            }
+        });
+        edtSoluong.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String id = intent.getStringExtra("id");
+                List<Product> products = modelSanPham.getAll(getData);
+                int soLuong = (int) products.get(Integer.parseInt(id)).getSo_luong();
+                try {
+                    if (Integer.parseInt(edtSoluong.getText().toString()) > soLuong){
+                        edtSoluong.setText(soLuong+"");
+                    }
+                }catch(Exception e){
+
+                }
             }
         });
     }
@@ -143,7 +175,7 @@ public class BuyActivity extends AppCompatActivity {
             }
         }
         edtName.setText(products.get(Integer.parseInt(intent.getStringExtra("id"))).getTen_san_pham());
-        edtSoluong.setText(String.valueOf(products.get(Integer.parseInt(intent.getStringExtra("id"))).getSo_luong()));
+        edtSoluong.setText("1");
         edtPrice.setText(String.valueOf(products.get(Integer.parseInt(intent.getStringExtra("id"))).getGia_ban()));
         tvThuongHieu.setText(nameTH);
         tvLoaiSanPham.setText(nameLSP);

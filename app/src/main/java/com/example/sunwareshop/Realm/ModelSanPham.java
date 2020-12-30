@@ -110,7 +110,32 @@ public class ModelSanPham extends AppCompatActivity {
         });
         return "Success";
     }
+    public String updateSoLuongSanpham(String id, ArrayList<String> arrList){
+        Realm realm = Realm.getDefaultInstance();
+        final Long tg ;
+//        Long idTH = new Long(arrList.get(1))+1;
+//        Long idLSP = new Long(arrList.get(2))+1;
+//        Long finalIdTH = idTH;
+//        Long finalIdLSP = idLSP;
+        List<Product> products = getAll(realm);
+        tg = products.get(Integer.parseInt(id)).getMa_san_pham();
+        String soLuong = String.valueOf(products.get(Integer.parseInt(id)).getSo_luong() - Long.parseLong(arrList.get(3)));
+        realm.executeTransactionAsync(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                Product dbRealm = realm.where(Product.class).equalTo("ma_san_pham", tg).findFirst();
 
+//                dbRealm.setMa_thuong_hieu(finalIdTH);
+//                dbRealm.setMa_loai_san_pham(finalIdLSP);
+//                dbRealm.setTen_san_pham(arrList.get(0));
+//                dbRealm.setGia_ban(Double.parseDouble(arrList.get(3)));
+//                dbRealm.setHinh_anh(Long.parseLong("1"));
+//                dbRealm.setBao_hanh(Long.parseLong(arrList.get(4))+1);
+                dbRealm.setSo_luong(Long.parseLong(soLuong));
+            }
+        });
+        return "Success";
+    }
     public String deleteSanPham(Long id){
         Realm realm = Realm.getDefaultInstance();
         final Long dlt = id;

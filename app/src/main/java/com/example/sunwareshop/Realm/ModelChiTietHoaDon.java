@@ -55,20 +55,26 @@ public class ModelChiTietHoaDon extends AppCompatActivity {
         int vt = Integer.parseInt(arrayList.get(1));
         Long vt1 = sp.get(vt).getBao_hanh();
         newKey();
+        final String[] s = {""};
+        String msp = sp.get(vt).getMa_san_pham()+"";
+        String maHD = arrayList.get(0);
+        String soLuong = arrayList.get(3);
+        String price = arrayList.get(2);
         final long DbKey = KeyCTHD.getAndIncrement();
         insertRm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm backgroundRm) {
                 ChiTietHoaDon dbRealm = backgroundRm.createObject(ChiTietHoaDon.class, DbKey);
-                dbRealm.setMa_hoa_don(Long.parseLong(arrayList.get(0)+""));
-                dbRealm.setMa_san_pham(Long.parseLong(sp.get(vt).getMa_san_pham()+""));
-                dbRealm.setSo_luong(Long.parseLong(arrayList.get(3)+""));
-                dbRealm.setGia_ban(Double.parseDouble(arrayList.get(2)+""));
+                dbRealm.setMa_hoa_don(Long.parseLong(maHD));// maHD
+                dbRealm.setMa_san_pham(Long.parseLong(msp));
+                dbRealm.setSo_luong(Long.parseLong(soLuong));//soluong
+                dbRealm.setGia_ban(Double.parseDouble(price));//price
                 dbRealm.setBao_hanh(Long.parseLong(vt1+""));
+                s[0] ="done";
             }
         });
         insertRm.close();
-        return "nope";
+        return s[0];
     }
 
     public String updateChiTietHoaDon(Long id){
