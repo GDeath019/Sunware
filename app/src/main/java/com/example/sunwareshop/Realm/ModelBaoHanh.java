@@ -112,14 +112,14 @@ public class ModelBaoHanh extends AppCompatActivity {
             newKey();
             long DbKey = KeyBaohanh.getAndIncrement();
             ArrayList<String> time = new ArrayList<>();
-            time.add("1");
-            time.add("3");
-            time.add("6");
-            time.add("9");
-            time.add("12");
-            time.add("18");
-            time.add("24");
             time.add("36");
+            time.add("24");
+            time.add("18");
+            time.add("12");
+            time.add("9");
+            time.add("6");
+            time.add("3");
+            time.add("1");
             int n = time.size()-1;
             // them data vao phai dinh kem trong 1 transaction
             while (n >= 0){

@@ -109,10 +109,10 @@ public class ModelThuongHieu extends AppCompatActivity {
             newKey();
             long DbKey = KeyTH.getAndIncrement();
             ArrayList<ThuongHieu> data = new ArrayList<>();
-            data.add(new ThuongHieu(1, "1"));
-            data.add(new ThuongHieu(2, "1"));
-            data.add(new ThuongHieu(3, "1"));
-            data.add(new ThuongHieu(4, "1"));
+            data.add(new ThuongHieu(1, "non"));
+            data.add(new ThuongHieu(2, "kem"));
+            data.add(new ThuongHieu(3, "ga"));
+            data.add(new ThuongHieu(4, "ngu"));
             data.add(new ThuongHieu(5, "1"));
             data.add(new ThuongHieu(6, "1"));
             data.add(new ThuongHieu(7, "1"));

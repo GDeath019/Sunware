@@ -1,8 +1,13 @@
 package com.example.sunwareshop;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -65,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     ModelSanPham modelSanPham;
     ModelTaiKhoan modelTaiKhoan;
     ModelThuongHieu modelThuongHieu;
-    Button btn1;
+    Button btnLoad, btnAdd;
     ListView lv1;
     ArrayList<String> arr;
     ArrayAdapter arrayAdapter;
@@ -80,55 +85,62 @@ public class MainActivity extends AppCompatActivity {
 
         anhXa();
         addLv();
+        registerForContextMenu(lv1);
         lv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                List<BaoHanh> testData = modelBaoHanh.getAll(getData);
-                modelBaoHanh.deleteBaoHanh(testData.get(position).getMa_bao_hanh());
-                addLv();
+                List<Product> testData = modelSanPham.getAll(getData);
+                Intent intent = new Intent(MainActivity.this, ShowActivity.class);
+                intent.putExtra("name", testData.get(position).getTen_san_pham().toString());
+                intent.putExtra("thuonghieu", testData.get(position).getMa_thuong_hieu()+"");
+                intent.putExtra("loaisp", testData.get(position).getMa_loai_san_pham()+"");
+                intent.putExtra("giaban", testData.get(position).getGia_ban()+"");
+                intent.putExtra("soluong", testData.get(position).getSo_luong()+"");
+                intent.putExtra("hinhanh", testData.get(position).getHinh_anh()+"");
+                startActivity(intent);
             }
         });
-        lv1.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-//                List<BaoHanh> testData = modelBaoHanh.getAll(getData);
-//                modelBaoHanh.updateBaoHanh(testData.get(position).getMa_bao_hanh());
-//                addLv();
-                return false;
-            }
-        });
-        btn1.setOnClickListener(new View.OnClickListener() {
+        btnLoad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                modelBaoHanh.addData();
-//                modelChiTietHoaDon.addData();
-//                modelChiTietPhieuNhap.addData();
-//                modelDacTrung.addData();
-//                modelDacTrungSanpham.addData();
-//                try {
-//                    modelHoaDon.addData();
-//                    modelTaiKhoan.addData();
-//                    modelPhieuNhap.addData();
-//                } catch (ParseException e) {
-//                    e.printStackTrace();
-//                }
-                modelImei.addData();
-                modelLoaiDon.addData();
-                modelLoaiSanPham.addData();
-                modelNhaCungCap.addData();
-                modelSanPham.addData();
-                modelThuongHieu.addData();
                 addLv();
             }
         });
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddActivity.class);
+                startActivity(intent);
+            }
+        });
+        addData();
+    }
+    private void addData(){
+        modelBaoHanh.addData();
+        modelChiTietHoaDon.addData();
+        modelChiTietPhieuNhap.addData();
+        modelDacTrung.addData();
+        modelDacTrungSanpham.addData();
+        try {
+            modelHoaDon.addData();
+            modelTaiKhoan.addData();
+            modelPhieuNhap.addData();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        modelImei.addData();
+        modelLoaiDon.addData();
+        modelLoaiSanPham.addData();
+        modelNhaCungCap.addData();
+        modelSanPham.addData();
+        modelThuongHieu.addData();
     }
 
     private void addLv() {
-        List<BaoHanh> dbRealmList = modelBaoHanh.getAll(getData);
+        List<Product> dbRealmList = modelSanPham.getAll(getData);
         arr = new ArrayList<>();
-        Toast.makeText(this, "???"+dbRealmList.size(), Toast.LENGTH_SHORT).show();
         for (int i=0;i<dbRealmList.size();i++){
-            arr.add(dbRealmList.get(i).getMa_bao_hanh()+"\n   "+dbRealmList.get(i).getThoi_gian());
+            arr.add(dbRealmList.get(i).getTen_san_pham()+"\n   "+dbRealmList.get(i).getGia_ban());
         }
         arrayAdapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, arr);
         lv1.setAdapter(arrayAdapter);
@@ -136,11 +148,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void anhXa() {
         lv1 = findViewById(R.id.Lv1);
-        btn1 = findViewById(R.id.btn1);
-
-
+        btnLoad = findViewById(R.id.btnLoad);
+        btnAdd = findViewById(R.id.btnAdd);
 
         /// model
+
         modelBaoHanh = new ModelBaoHanh();
         modelChiTietHoaDon = new ModelChiTietHoaDon();
         modelChiTietPhieuNhap = new ModelChiTietPhieuNhap();
@@ -185,5 +197,26 @@ public class MainActivity extends AppCompatActivity {
         List<TaiKhoan> dbRealmList12 = modelTaiKhoan.getAll(getData);
         List<ThuongHieu> dbRealmList13 = modelThuongHieu.getAll(getData);
         int a=0;
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.action_listview, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        int pos = info.position;
+        switch (item.getItemId()){
+            case R.id.edit:
+                Intent intent = new Intent(MainActivity.this, EditActivity.class);
+                startActivity(intent);
+            case R.id.delete:
+                Toast.makeText(MainActivity.this, "delete", Toast.LENGTH_SHORT).show();
+        }
+        return super.onContextItemSelected(item);
     }
 }

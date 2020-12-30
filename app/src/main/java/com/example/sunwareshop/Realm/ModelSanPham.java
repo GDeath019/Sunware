@@ -2,12 +2,15 @@ package com.example.sunwareshop.Realm;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.widget.ArrayAdapter;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sunwareshop.Database.DacTrungSanPham;
+import com.example.sunwareshop.Database.LoaiSP;
 import com.example.sunwareshop.Database.Product;
+import com.example.sunwareshop.Database.ThuongHieu;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -22,6 +25,9 @@ public class ModelSanPham extends AppCompatActivity {
     private String DbName = "FirstDb.realm";
     public static AtomicLong KeySP;
     Realm getData;
+    ModelThuongHieu modelThuongHieu;
+    ModelLoaiSanPham modelLoaiSanPham;
+    ArrayList<String> arrThuongHieu, arrLoaiSanPham;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
@@ -29,6 +35,7 @@ public class ModelSanPham extends AppCompatActivity {
         initRealM();
         getData = Realm.getDefaultInstance();
         addData();
+
     }
     public void initRealM() {
         Realm.init(Realm.getApplicationContext());
@@ -44,52 +51,65 @@ public class ModelSanPham extends AppCompatActivity {
 
     }
 
-    public String insertDacTrungSanPham(){
+    public String insertSanPham(ArrayList<String> arrList){
+        initRealM();
         final Realm insertRm = Realm.getDefaultInstance();
+        getData = Realm.getDefaultInstance();
+        modelLoaiSanPham = new ModelLoaiSanPham();
+        arrThuongHieu = new ArrayList<>();
+        arrLoaiSanPham = new ArrayList<>();
+        modelThuongHieu = new ModelThuongHieu();
         newKey();
         final long DbKey = KeySP.getAndIncrement();
+        List<ThuongHieu> listTH = modelThuongHieu.getAll(getData);
+        Long idTH = new Long(arrList.get(1))+1;
+        Long idLSP = new Long(arrList.get(2))+1;
+        Long finalIdTH = idTH;
+        Long finalIdLSP = idLSP;
+        if (finalIdLSP == -1 || finalIdTH == -1){
+            return "Insert Fail";
+        }
         insertRm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm backgroundRm) {
                 Product dbRealm = backgroundRm.createObject(Product.class, DbKey);
-                String sss = "1";
-                dbRealm.setMa_thuong_hieu(Long.parseLong(sss.toString()));
-                dbRealm.setMa_loai_san_pham(Long.parseLong(sss.toString()));
-                dbRealm.setTen_san_pham(sss.toString());
-                dbRealm.setGia_ban(Long.parseLong(sss.toString()));
-                dbRealm.setHinh_anh(Long.parseLong(sss.toString()));
-                dbRealm.setSo_luong(Long.parseLong(sss.toString()));
+
+                dbRealm.setMa_thuong_hieu(finalIdTH);
+                dbRealm.setMa_loai_san_pham(finalIdLSP);
+                dbRealm.setTen_san_pham(arrList.get(0));
+                dbRealm.setGia_ban(Long.parseLong(arrList.get(3)));
+                dbRealm.setHinh_anh(Long.parseLong("1"));
+                dbRealm.setSo_luong(Long.parseLong("0"));
             }
         });
         insertRm.close();
-        final Realm InsertRm = Realm.getDefaultInstance();
-        return "nope";
+        return "Success";
     }
 
-    public String updateDacTrungSanpham(Long id){
+    public String updateSanpham(Long id, ArrayList<String> arrList){
         Realm realm = Realm.getDefaultInstance();
         final Long tg = id;
+        Long idTH = new Long(arrList.get(1))+1;
+        Long idLSP = new Long(arrList.get(2))+1;
+        Long finalIdTH = idTH;
+        Long finalIdLSP = idLSP;
         realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-//                if(edtName.getText().length()==0 || edtUnv.getText().length()==0 || edtAge.getText().length()==0){
-//                    Toast.makeText(getApplicationContext(), "Mời nhập đủ dữ liệu!!", Toast.LENGTH_SHORT).show();
-//                }else {
                 Product dbRealm = realm.where(Product.class).equalTo("ma_san_pham", tg).findFirst();
-                String sss = "9999";
-                dbRealm.setMa_thuong_hieu(Long.parseLong(sss.toString()));
-                dbRealm.setMa_loai_san_pham(Long.parseLong(sss.toString()));
-                dbRealm.setTen_san_pham(sss.toString());
-                dbRealm.setGia_ban(Long.parseLong(sss.toString()));
-                dbRealm.setHinh_anh(Long.parseLong(sss.toString()));
-                dbRealm.setSo_luong(Long.parseLong(sss.toString()));
-//                }
+
+                dbRealm.setMa_thuong_hieu(finalIdTH);
+                dbRealm.setMa_loai_san_pham(finalIdLSP);
+                dbRealm.setTen_san_pham(arrList.get(0));
+                dbRealm.setGia_ban(Long.parseLong(arrList.get(3)));
+                dbRealm.setHinh_anh(Long.parseLong("1"));
+//                dbRealm.setSo_luong(Long.parseLong(arrList.get(4)));
             }
         });
-        return "nope";
+        return "Sucess";
     }
 
-    public String deleteDacTrungSanPham(Long id){
+    public String deleteSanPham(Long id){
         Realm realm = Realm.getDefaultInstance();
         final Long dlt = id;
         final boolean[] check = {true};
