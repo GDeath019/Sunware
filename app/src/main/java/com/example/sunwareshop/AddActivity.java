@@ -12,8 +12,10 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.sunwareshop.Database.BaoHanh;
 import com.example.sunwareshop.Database.LoaiSP;
 import com.example.sunwareshop.Database.ThuongHieu;
+import com.example.sunwareshop.Realm.ModelBaoHanh;
 import com.example.sunwareshop.Realm.ModelLoaiSanPham;
 import com.example.sunwareshop.Realm.ModelSanPham;
 import com.example.sunwareshop.Realm.ModelThuongHieu;
@@ -26,14 +28,15 @@ import io.realm.Realm;
 public class AddActivity extends AppCompatActivity {
     EditText edtName, edtPrice, edtSoluong;
     ImageButton img;
-    Spinner spnThuongHieu, spnLoaiSanPham;
+    Spinner spnThuongHieu, spnLoaiSanPham, spnBaoHanh;
     Button btnSubmit, btnCancel;
     ModelSanPham modelSanPham;
     ModelThuongHieu modelThuongHieu;
     ModelLoaiSanPham modelLoaiSanPham;
+    ModelBaoHanh modelBaoHanh;
     Realm getData;
-    ArrayList<String> arrThuongHieu, arrLoaiSanPham;
-    ArrayAdapter arrayAdapter, arrayAdapter2;
+    ArrayList<String> arrThuongHieu, arrLoaiSanPham, arrBaoHanh;
+    ArrayAdapter arrayAdapter, arrayAdapter2, arrayAdapter3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +55,7 @@ public class AddActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 insertData();
+                onBackPressed();
             }
         });
     }
@@ -64,13 +68,15 @@ public class AddActivity extends AppCompatActivity {
         spnLoaiSanPham = findViewById(R.id.spnLoaiSanPham);
         btnSubmit = findViewById(R.id.btnSubmit);
         btnCancel = findViewById(R.id.btnCancel);
+        spnBaoHanh = findViewById(R.id.spnBaoHanh);
 
-         edtSoluong.setEnabled(false);
+        edtSoluong.setEnabled(false);
         ///// model
 
         modelSanPham = new ModelSanPham();
         modelThuongHieu = new ModelThuongHieu();
         modelLoaiSanPham = new ModelLoaiSanPham();
+        modelBaoHanh = new ModelBaoHanh();
     }
     private void addSpn(){
         List<ThuongHieu> dbThuongHieu = modelThuongHieu.getAll(getData);
@@ -88,6 +94,14 @@ public class AddActivity extends AppCompatActivity {
         }
         arrayAdapter2 = new ArrayAdapter(AddActivity.this, android.R.layout.simple_list_item_1, arrLoaiSanPham);
         spnLoaiSanPham.setAdapter(arrayAdapter2);
+
+        List<BaoHanh> dbBaoHanh = modelBaoHanh.getAll(getData);
+        arrBaoHanh = new ArrayList<>();
+        for (int i=0;i<dbLoaiSP.size();i++){
+            arrBaoHanh.add(String.valueOf(dbBaoHanh.get(i).getThoi_gian()));
+        }
+        arrayAdapter3 = new ArrayAdapter(AddActivity.this, android.R.layout.simple_list_item_1, arrBaoHanh);
+        spnBaoHanh.setAdapter(arrayAdapter3);
     }
     private void insertData(){
         ArrayList<String> arrayList = new ArrayList<>();
@@ -96,6 +110,7 @@ public class AddActivity extends AppCompatActivity {
            arrayList.add(String.valueOf(spnThuongHieu.getSelectedItemPosition()));
            arrayList.add(String.valueOf(spnLoaiSanPham.getSelectedItemPosition()));
            arrayList.add(edtPrice.getText().toString());
+           arrayList.add(String.valueOf(spnBaoHanh.getSelectedItemPosition()));
 //        arrayList.add(edtName.getText().toString());
        }catch (Exception e){
            Toast.makeText(AddActivity.this,"Thiếu dữ liệu", Toast.LENGTH_SHORT).show();

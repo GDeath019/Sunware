@@ -12,8 +12,11 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.sunwareshop.Database.BaoHanh;
 import com.example.sunwareshop.Database.LoaiSP;
+import com.example.sunwareshop.Database.Product;
 import com.example.sunwareshop.Database.ThuongHieu;
+import com.example.sunwareshop.Realm.ModelBaoHanh;
 import com.example.sunwareshop.Realm.ModelLoaiSanPham;
 import com.example.sunwareshop.Realm.ModelSanPham;
 import com.example.sunwareshop.Realm.ModelThuongHieu;
@@ -26,14 +29,15 @@ import io.realm.Realm;
 public class EditActivity extends AppCompatActivity {
     EditText edtName, edtPrice, edtSoluong;
     ImageButton img;
-    Spinner spnThuongHieu, spnLoaiSanPham;
+    Spinner spnThuongHieu, spnLoaiSanPham, spnBaohanh;
     Button btnSubmit, btnCancel;
     ModelSanPham modelSanPham;
     ModelThuongHieu modelThuongHieu;
     ModelLoaiSanPham modelLoaiSanPham;
+    ModelBaoHanh modelBaoHanh;
     Realm getData;
-    ArrayList<String> arrThuongHieu, arrLoaiSanPham;
-    ArrayAdapter arrayAdapter, arrayAdapter2;
+    ArrayList<String> arrThuongHieu, arrLoaiSanPham, arrBaoHanh;
+    ArrayAdapter arrayAdapter, arrayAdapter2, arrayAdapter3;
     Long id = Long.valueOf(0);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +58,25 @@ public class EditActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 updateData();
+                onBackPressed();
             }
         });
         Intent intent = getIntent();
         id = Long.parseLong(intent.getStringExtra("id"));
+        setData();
     }
+
+    private void setData(){
+        List<Product> products = modelSanPham.getAll(getData);
+        edtName.setText(products.get(Math.toIntExact(id)).getTen_san_pham());
+        edtSoluong.setText(String.valueOf(products.get(Math.toIntExact(id)).getSo_luong()));
+        edtPrice.setText(String.valueOf(products.get(Math.toIntExact(id)).getGia_ban()));
+//        spnLoaiSanPham.setSelection((int) (products.get(0).getMa_loai_san_pham()-1));
+//        spnThuongHieu.setSelection((int) (products.get(0).getMa_thuong_hieu()-1));
+
+
+    }
+
     private void anhXa(){
         edtName = findViewById(R.id.edtNameEdit);
         edtPrice = findViewById(R.id.edtPriceEdit);
@@ -69,6 +87,7 @@ public class EditActivity extends AppCompatActivity {
         btnSubmit = findViewById(R.id.btnSubmitEdit);
         btnCancel = findViewById(R.id.btnCancelEdit);
         edtSoluong.setEnabled(false);
+        spnBaohanh = findViewById(R.id.spnBaoHanhEdit);
 
 
         ///// model
@@ -76,6 +95,7 @@ public class EditActivity extends AppCompatActivity {
         modelSanPham = new ModelSanPham();
         modelThuongHieu = new ModelThuongHieu();
         modelLoaiSanPham = new ModelLoaiSanPham();
+        modelBaoHanh = new ModelBaoHanh();
     }
     private void addSpn(){
         List<ThuongHieu> dbThuongHieu = modelThuongHieu.getAll(getData);
@@ -93,6 +113,14 @@ public class EditActivity extends AppCompatActivity {
         }
         arrayAdapter2 = new ArrayAdapter(EditActivity.this, android.R.layout.simple_list_item_1, arrLoaiSanPham);
         spnLoaiSanPham.setAdapter(arrayAdapter2);
+
+        List<BaoHanh> dbBaoHanh = modelBaoHanh.getAll(getData);
+        arrBaoHanh = new ArrayList<>();
+        for (int i=0;i<dbLoaiSP.size();i++){
+            arrBaoHanh.add(String.valueOf(dbBaoHanh.get(i).getThoi_gian()));
+        }
+        arrayAdapter3 = new ArrayAdapter(EditActivity.this, android.R.layout.simple_list_item_1, arrBaoHanh);
+        spnBaohanh.setAdapter(arrayAdapter3);
     }
     private void updateData(){
         ArrayList<String> arrayList = new ArrayList<>();
@@ -101,6 +129,7 @@ public class EditActivity extends AppCompatActivity {
             arrayList.add(String.valueOf(spnThuongHieu.getSelectedItemPosition()));
             arrayList.add(String.valueOf(spnLoaiSanPham.getSelectedItemPosition()));
             arrayList.add(edtPrice.getText().toString());
+            arrayList.add(String.valueOf(spnBaohanh.getSelectedItemPosition()));
 //            arrayList.add(edtSoluong.getText().toString());
 //        arrayList.add(edtName.getText().toString());
         }catch (Exception e){

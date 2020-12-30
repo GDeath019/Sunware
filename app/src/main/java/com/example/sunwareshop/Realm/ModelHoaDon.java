@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sunwareshop.Database.HoaDon;
+import com.example.sunwareshop.Database.TaiKhoan;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,7 +24,7 @@ public class ModelHoaDon extends AppCompatActivity {
     private String DbName = "FirstDb.realm";
     public static AtomicLong KeyHoaDon;
     Realm getData;
-
+    ModelTaiKhoan modelTaiKhoan;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
@@ -74,26 +75,54 @@ public class ModelHoaDon extends AppCompatActivity {
         }
         realm.close();
     }
-    public String insertHoaDon(){
+    public String insertHoaDon(ArrayList<String> arrayList){
         final Realm insertRm = Realm.getDefaultInstance();
+        getData = Realm.getDefaultInstance();
         newKey();
+        ModelChiTietHoaDon modelChiTietHoaDon = new ModelChiTietHoaDon();
+        modelTaiKhoan = new ModelTaiKhoan();
+        List<TaiKhoan> taiKhoans = modelTaiKhoan.getAll(getData);
+        int nv=0,kh=0;
+        int check =0;
+        for (int i=0;i<taiKhoans.size();i++){
+            if (String.valueOf(taiKhoans.get(i).getHo_ten()).equals(String.valueOf(arrayList.get(0)))){
+                nv = Integer.parseInt(taiKhoans.get(i).getId()+"");
+                check++;
+            }
+            if (String.valueOf(taiKhoans.get(i).getHo_ten()).equals(String.valueOf(arrayList.get(1)))){
+                kh = Integer.parseInt(taiKhoans.get(i).getId()+"");
+                check++;
+            }
+            if (check==2){
+                break;
+            }
+        }
         final long DbKey = KeyHoaDon.getAndIncrement();
+        int finalNv = nv;
+        int finalKh = kh;
+        final String[] s = {""};
         insertRm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm backgroundRm) {
                 HoaDon dbRealm = backgroundRm.createObject(HoaDon.class, DbKey);
-                String sss = "1";
-                dbRealm.setMa_nhan_vien(Integer.parseInt(sss.toString()));
-                dbRealm.setMa_khach_hang(Integer.parseInt(sss.toString()));
+                dbRealm.setMa_nhan_vien(Integer.parseInt(finalNv +""));
+                dbRealm.setMa_khach_hang(Integer.parseInt(finalKh +""));
                 //dbRealm.setNgay_lap(Integer.parseInt(sss.toString()));
-                dbRealm.setLoai_don(Integer.parseInt(sss.toString()));
-                dbRealm.setTrang_thai(sss.toString());
-                dbRealm.setTong_tien(Double.parseDouble(sss.toString()));
+                dbRealm.setLoai_don(Integer.parseInt("1"));
+                dbRealm.setTrang_thai("1");
+                double tt =(double) Integer.parseInt(arrayList.get(3))*Double.parseDouble(arrayList.get(2));
+                dbRealm.setTong_tien(Double.parseDouble(tt+""));
+                s[0] ="non";
             }
         });
         insertRm.close();
-        final Realm InsertRm = Realm.getDefaultInstance();
-        return "nope";
+        ArrayList<String> arrayList1 = new ArrayList<>();
+        arrayList1.add(DbKey+"");
+        arrayList1.add(arrayList.get(5)+"");
+        arrayList1.add(arrayList.get(2));
+        arrayList1.add(arrayList.get(3));
+        modelChiTietHoaDon.insertChiTietHoaDon(arrayList1);
+        return s[0];
     }
 
     public String updateHoaDon(Long id){

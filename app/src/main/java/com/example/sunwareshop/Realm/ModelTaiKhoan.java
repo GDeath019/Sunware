@@ -137,14 +137,14 @@ public class ModelTaiKhoan extends AppCompatActivity {
             String sDate1="31/12/1998";
             Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
             ArrayList<TaiKhoan> data = new ArrayList<>();
-            data.add(new TaiKhoan(1, "1", date1, "1","name","dia chi","sdt", 1, 1));
-            data.add(new TaiKhoan(2, "1", date1, "1","name","dia chi","sdt", 1, 1));
-            data.add(new TaiKhoan(3, "1", date1, "1","name","dia chi","sdt", 1, 1));
-            data.add(new TaiKhoan(4, "1", date1, "1","name","dia chi","sdt", 1, 1));
-            data.add(new TaiKhoan(5, "1", date1, "1","name","dia chi","sdt", 1, 1));
-            data.add(new TaiKhoan(6, "1", date1, "1","name","dia chi","sdt", 1, 1));
-            data.add(new TaiKhoan(7, "1", date1, "1","name","dia chi","sdt", 1, 1));
-            data.add(new TaiKhoan(8, "1", date1, "1","name","dia chi","sdt", 1, 1));
+            data.add(new TaiKhoan(1, "admin@gmail.com", date1, "123456","Nguyễn Văn A","Hà Nội","0964632587", 1, 1));
+            data.add(new TaiKhoan(2, "user@gmail.com", date1, "1","Nguyễn Văn B","dia chi","sdt", 1, 2));
+            data.add(new TaiKhoan(3, "userVip@gmail.com", date1, "1","Trần Thị C","dia chi","sdt", 1, 2));
+            data.add(new TaiKhoan(4, "adminGold@gmail.com", date1, "1","Đào Duy D","dia chi","sdt", 1, 1));
+            data.add(new TaiKhoan(5, "userLegend@gmail.com", date1, "1","Hoàng Văn E","dia chi","sdt", 1, 2));
+            data.add(new TaiKhoan(6, "admin1@gmail.com", date1, "1","Đỗ Văn F","dia chi","sdt", 1, 1));
+            data.add(new TaiKhoan(7, "admin2@gmail.com", date1, "1","Nghiêm Thị G","dia chi","sdt", 1, 1));
+            data.add(new TaiKhoan(8, "admin3@gmail.com", date1, "1","Đoàn Dự","dia chi","sdt", 1, 2));
             int n = data.size()-1;
             // them data vao phai dinh kem trong 1 transaction
             while (n >= 0){

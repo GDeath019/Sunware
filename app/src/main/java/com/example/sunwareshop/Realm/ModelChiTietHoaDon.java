@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sunwareshop.Database.BaoHanh;
 import com.example.sunwareshop.Database.ChiTietHoaDon;
+import com.example.sunwareshop.Database.Product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,24 +45,29 @@ public class ModelChiTietHoaDon extends AppCompatActivity {
 
     }
 
-    public String insertChiTietHoaDon(){
+    public String insertChiTietHoaDon(ArrayList<String> arrayList){
         final Realm insertRm = Realm.getDefaultInstance();
+//        ModelBaoHanh modelBaoHanh = new ModelBaoHanh();
+        ModelSanPham modelSanPham = new ModelSanPham();
+        getData = Realm.getDefaultInstance();
+//        List<BaoHanh> bh = modelBaoHanh.getAll(getData);
+        List<Product> sp = modelSanPham.getAll(getData);
+        int vt = Integer.parseInt(arrayList.get(1));
+        Long vt1 = sp.get(vt).getBao_hanh();
         newKey();
         final long DbKey = KeyCTHD.getAndIncrement();
         insertRm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm backgroundRm) {
                 ChiTietHoaDon dbRealm = backgroundRm.createObject(ChiTietHoaDon.class, DbKey);
-                String sss = "1";
-                dbRealm.setMa_hoa_don(Long.parseLong(sss.toString()));
-                dbRealm.setMa_san_pham(Long.parseLong(sss.toString()));
-                dbRealm.setSo_luong(Long.parseLong(sss.toString()));
-                dbRealm.setGia_ban(Double.parseDouble(sss.toString()));
-                dbRealm.setBao_hanh(Long.parseLong(sss.toString()));
+                dbRealm.setMa_hoa_don(Long.parseLong(arrayList.get(0)+""));
+                dbRealm.setMa_san_pham(Long.parseLong(sp.get(vt).getMa_san_pham()+""));
+                dbRealm.setSo_luong(Long.parseLong(arrayList.get(3)+""));
+                dbRealm.setGia_ban(Double.parseDouble(arrayList.get(2)+""));
+                dbRealm.setBao_hanh(Long.parseLong(vt1+""));
             }
         });
         insertRm.close();
-        final Realm InsertRm = Realm.getDefaultInstance();
         return "nope";
     }
 

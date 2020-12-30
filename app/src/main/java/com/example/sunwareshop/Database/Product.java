@@ -12,11 +12,12 @@ public class Product extends RealmObject {
     private double gia_ban;
     private long hinh_anh;
     private long so_luong;
+    private long bao_hanh;
 
     public Product() {
     }
 
-    public Product(long ma_san_pham, long ma_thuong_hieu, long ma_loai_san_pham, String ten_san_pham, double gia_ban, long hinh_anh, long so_luong) {
+    public Product(long ma_san_pham, long ma_thuong_hieu, long ma_loai_san_pham, String ten_san_pham, double gia_ban, long hinh_anh, long so_luong, long bao_hanh) {
         this.ma_san_pham = ma_san_pham;
         this.ma_thuong_hieu = ma_thuong_hieu;
         this.ma_loai_san_pham = ma_loai_san_pham;
@@ -24,6 +25,15 @@ public class Product extends RealmObject {
         this.gia_ban = gia_ban;
         this.hinh_anh = hinh_anh;
         this.so_luong = so_luong;
+        this.bao_hanh = bao_hanh;
+    }
+
+    public long getBao_hanh() {
+        return bao_hanh;
+    }
+
+    public void setBao_hanh(long bao_hanh) {
+        this.bao_hanh = bao_hanh;
     }
 
     public long getHinh_anh() {

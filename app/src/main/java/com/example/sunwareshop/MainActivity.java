@@ -91,12 +91,14 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 List<Product> testData = modelSanPham.getAll(getData);
                 Intent intent = new Intent(MainActivity.this, ShowActivity.class);
-                intent.putExtra("name", testData.get(position).getTen_san_pham().toString());
+                intent.putExtra("id", position+"");
+                intent.putExtra("name", testData.get(position).getTen_san_pham()+"");
                 intent.putExtra("thuonghieu", testData.get(position).getMa_thuong_hieu()+"");
                 intent.putExtra("loaisp", testData.get(position).getMa_loai_san_pham()+"");
                 intent.putExtra("giaban", testData.get(position).getGia_ban()+"");
                 intent.putExtra("soluong", testData.get(position).getSo_luong()+"");
                 intent.putExtra("hinhanh", testData.get(position).getHinh_anh()+"");
+                intent.putExtra("baohanh", testData.get(position).getBao_hanh()+"");
                 startActivity(intent);
             }
         });
@@ -209,14 +211,26 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        List<Product> dbRealmList = modelSanPham.getAll(getData);
         int pos = info.position;
+        Long id1 = dbRealmList.get(pos).getMa_san_pham();
         switch (item.getItemId()){
             case R.id.edit:
                 Intent intent = new Intent(MainActivity.this, EditActivity.class);
+                intent.putExtra("id", String.valueOf(pos));
                 startActivity(intent);
+                break;
             case R.id.delete:
-                Toast.makeText(MainActivity.this, "delete", Toast.LENGTH_SHORT).show();
+                String result = modelSanPham.deleteSanPham((long) id1);
+                Toast.makeText(MainActivity.this, "Delete " + result, Toast.LENGTH_SHORT).show();
+                break;
         }
         return super.onContextItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        addLv();
     }
 }

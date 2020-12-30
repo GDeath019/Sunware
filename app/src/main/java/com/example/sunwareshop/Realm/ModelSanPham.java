@@ -80,6 +80,7 @@ public class ModelSanPham extends AppCompatActivity {
                 dbRealm.setGia_ban(Long.parseLong(arrList.get(3)));
                 dbRealm.setHinh_anh(Long.parseLong("1"));
                 dbRealm.setSo_luong(Long.parseLong("0"));
+                dbRealm.setBao_hanh(Long.parseLong(arrList.get(4))+1);
             }
         });
         insertRm.close();
@@ -88,7 +89,7 @@ public class ModelSanPham extends AppCompatActivity {
 
     public String updateSanpham(Long id, ArrayList<String> arrList){
         Realm realm = Realm.getDefaultInstance();
-        final Long tg = id;
+        final Long tg = id+1;
         Long idTH = new Long(arrList.get(1))+1;
         Long idLSP = new Long(arrList.get(2))+1;
         Long finalIdTH = idTH;
@@ -101,12 +102,13 @@ public class ModelSanPham extends AppCompatActivity {
                 dbRealm.setMa_thuong_hieu(finalIdTH);
                 dbRealm.setMa_loai_san_pham(finalIdLSP);
                 dbRealm.setTen_san_pham(arrList.get(0));
-                dbRealm.setGia_ban(Long.parseLong(arrList.get(3)));
+                dbRealm.setGia_ban(Double.parseDouble(arrList.get(3)));
                 dbRealm.setHinh_anh(Long.parseLong("1"));
+                dbRealm.setBao_hanh(Long.parseLong(arrList.get(4))+1);
 //                dbRealm.setSo_luong(Long.parseLong(arrList.get(4)));
             }
         });
-        return "Sucess";
+        return "Success";
     }
 
     public String deleteSanPham(Long id){
@@ -140,14 +142,14 @@ public class ModelSanPham extends AppCompatActivity {
             newKey();
             long DbKey = KeySP.getAndIncrement();
             ArrayList<Product> data = new ArrayList<>();
-            data.add(new Product(1, 1,1,"name",1.0,1,1));
-            data.add(new Product(2, 1,1,"name",1.0,1,1));
-            data.add(new Product(3, 1,1,"name",1.0,1,1));
-            data.add(new Product(4, 1,1,"name",1.0,1,1));
-            data.add(new Product(5, 1,1,"name",1.0,1,1));
-            data.add(new Product(6, 1,1,"name",1.0,1,1));
-            data.add(new Product(7, 1,1,"name",1.0,1,1));
-            data.add(new Product(8, 1,1,"name",1.0,1,1));
+            data.add(new Product(1, 1,1,"name",1.0,1,1,1));
+            data.add(new Product(2, 1,1,"name",1.0,1,1,2));
+            data.add(new Product(3, 1,1,"name",1.0,1,1,3));
+            data.add(new Product(4, 1,1,"name",1.0,1,1,4));
+            data.add(new Product(5, 1,1,"name",1.0,1,1,5));
+            data.add(new Product(6, 1,1,"name",1.0,1,1,6));
+            data.add(new Product(7, 1,1,"name",1.0,1,1,7));
+            data.add(new Product(8, 1,1,"name",1.0,1,1,8));
             int n = data.size()-1;
             // them data vao phai dinh kem trong 1 transaction
             while (n >= 0){
@@ -163,6 +165,7 @@ public class ModelSanPham extends AppCompatActivity {
                         dbRealm.setGia_ban(data.get(temp).getGia_ban());
                         dbRealm.setHinh_anh(data.get(temp).getHinh_anh());
                         dbRealm.setSo_luong(data.get(temp).getSo_luong());
+                        dbRealm.setBao_hanh(data.get(temp).getBao_hanh());
                     }
                 });
                 DbKey++;

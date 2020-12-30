@@ -6,4 +6,204 @@
     android:layout_height="match_parent"
     tools:context=".BuyActivity">
 
+    <ImageButton
+        android:id="@+id/imgBtBuy"
+        android:layout_width="153dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/camera"
+        app:layout_constraintBottom_toTopOf="@+id/tvNameBuy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.077"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <TextView
+        android:id="@+id/tv4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Nhân Viên"
+        app:layout_constraintBottom_toTopOf="@+id/spnNhanVienBuy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.149"
+        app:layout_constraintStart_toEndOf="@+id/imgBtBuy"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.896" />
+
+    <TextView
+        android:id="@+id/tv5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="9dp"
+        android:text="Khách hàng"
+        app:layout_constraintBottom_toTopOf="@+id/spnKhachBuy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.157"
+        app:layout_constraintStart_toEndOf="@+id/imgBtBuy"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Spinner
+        android:id="@+id/spnNhanVienBuy"
+        android:layout_width="182dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/tv5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.464"
+        app:layout_constraintStart_toEndOf="@+id/imgBtBuy"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Spinner
+        android:id="@+id/spnKhachBuy"
+        android:layout_width="182dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="28dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvNameBuy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.464"
+        app:layout_constraintStart_toEndOf="@+id/imgBtBuy"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.991" />
+
+    <TextView
+        android:id="@+id/tvNameBuy"
+        android:layout_width="291dp"
+        android:layout_height="46dp"
+        android:layout_marginBottom="56dp"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:hint="Tên sản phẩm"
+        app:layout_constraintBottom_toTopOf="@+id/tvThuongHieuBuy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="12dp"
+        android:textStyle="bold"
+        android:text="Thương Hiệu"
+        app:layout_constraintBottom_toTopOf="@+id/tvThuongHieuBuy"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvThuongHieuBuy"
+        android:layout_width="275dp"
+        android:layout_height="46dp"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="56dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvLoaiSanPhamBuy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="12dp"
+        android:textStyle="bold"
+        android:text="Loại sản phẩm"
+        app:layout_constraintBottom_toTopOf="@+id/tvLoaiSanPhamBuy"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvLoaiSanPhamBuy"
+        android:layout_width="275dp"
+        android:layout_height="46dp"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="56dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvPriceBuy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="12dp"
+        android:textStyle="bold"
+        android:text="Giá bán"
+        app:layout_constraintBottom_toTopOf="@+id/tvPriceBuy"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="Số Lượng"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/edtSoLuongBuy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.696"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvPriceBuy"
+        android:layout_width="166dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="28dp"
+        android:textSize="20dp"
+        android:layout_marginBottom="28dp"
+        android:hint="Giá Bán"
+        android:textStyle="bold"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/btnSubmitBuy"
+        app:layout_constraintEnd_toStartOf="@+id/edtSoLuongBuy"
+        app:layout_constraintHorizontal_bias="0.256"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/edtSoLuongBuy"
+        android:layout_width="109dp"
+        android:layout_height="41dp"
+        android:layout_marginBottom="28dp"
+        android:hint="Số lượng"
+        android:inputType="number"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnCancelBuy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.867"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnSubmitBuy"
+        android:layout_width="126dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="16dp"
+        android:text="Submit"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnCancelBuy"
+        app:layout_constraintHorizontal_bias="0.208"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnCancelBuy"
+        android:layout_width="126dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="16dp"
+        android:text="Cancel"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.859"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
